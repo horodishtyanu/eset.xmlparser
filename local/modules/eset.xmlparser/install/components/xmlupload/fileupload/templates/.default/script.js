@@ -4,13 +4,17 @@ $(document).on('click','#upload', function(event) {
     let file_data = $('#xmlfile').prop('files')[0];
     let form_data = new FormData();
     form_data.append('file', file_data);
-    console.log(form_data);
-    BX.ajax.runComponentAction('xmlupload:fileupload',
-        'uploadFiles', {
-            mode: 'class',
-            data: {post: {form_data}}
-        })
-        .then(function(response) {
-            console.log(response);
-        });
+    console.log(typeof form_data);
+    let url = BX.message('AJAX_TEMPLATE_PATH');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: form_data,
+        processData: false,
+        contentType: false,
+        dataType: "text",
+        success: function(resp){
+            console.log(resp);
+        }
+    })
 });

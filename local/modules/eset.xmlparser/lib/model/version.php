@@ -5,12 +5,14 @@ defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
 use Bitrix\Main\Entity;
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\ORM\Data\DataManager;
+use Bitrix\Main\ORM\Fields\IntegerField;
 use Bitrix\Main\ORM\Fields\Relations\Reference;
 use Bitrix\Main\ORM\Query\Join;
 
 Loc::loadMessages(__FILE__);
 
-class VersionTable extends Entity\DataManager
+class VersionTable extends DataManager
 {
     public static function getTableName()
     {
@@ -40,7 +42,7 @@ class VersionTable extends Entity\DataManager
             new Entity\StringField('COUNT', array(
                 'required' => true,
             )),
-            new Entity\IntegerField('PROGRAM_ID'),
+            new IntegerField('PROGRAM_ID'),
             new Reference(
                 'PROGRAM',
                 ProgramTable::class,

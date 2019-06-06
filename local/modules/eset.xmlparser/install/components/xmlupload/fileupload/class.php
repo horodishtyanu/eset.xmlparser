@@ -3,6 +3,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\SystemException;
 use Bitrix\Main\Engine\Contract\Controllerable;
 
+
 /**
  * Created by PhpStorm.
  * User: Alexander
@@ -34,19 +35,20 @@ class xmluploadComponents extends CBitrixComponent implements Controllerable {
 //            }
 //            $i++;
 //        }
+
         $arResult['test'] = 'asdasd';
         $this->arResult = $arResult;
     }
 
-    public function uploadFilesAction($post){
-        if ( 0 < $post['file']['error'] ) {
-            return 'Error: ' . $post['file']['error'] . '<br>';
+    public function uploadFilesAction($file){
+        CModule::IncludeModule('eset.xmlparser');
+        if ( 0 < $file['file']['error'] ) {
+            return 'Error: ' . $file['file']['error'] . '<br>';
         }
         else {
-            move_uploaded_file($post['file']['tmp_name'], '/upload/' . $post['file']['name']);
-            return simplexml_load_file('/upload/' . $post['file']['name']);
+            move_uploaded_file($file['file']['tmp_name'], $_SERVER["DOCUMENT_ROOT"] . '/upload/' . $file['file']['name']);
+            return \Eset\Xmlparser\Controller\File::addXmlFile(simplexml_load_file($_SERVER["DOCUMENT_ROOT"] . '/upload/' . $file['file']['name']));
         }
-
     }
 
     protected function checkModules()

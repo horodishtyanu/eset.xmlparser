@@ -5,6 +5,7 @@ defined('B_PROLOG_INCLUDED') and (B_PROLOG_INCLUDED === true) or die();
 
 use Bitrix\Main\Entity;
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\ORM\Data\DataManager;
 use Bitrix\Main\ORM\Fields\IntegerField;
 use Bitrix\Main\ORM\Fields\Relations\OneToMany;
 use Bitrix\Main\ORM\Fields\Relations\Reference;
@@ -12,7 +13,7 @@ use Bitrix\Main\ORM\Query\Join;
 
 Loc::loadMessages(__FILE__);
 
-class ProgramTable extends Entity\DataManager
+class ProgramTable extends DataManager
 {
 
     private $vendor;

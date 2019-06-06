@@ -8,6 +8,7 @@ use Bitrix\Main\ModuleManager;
 use Eset\Xmlparser\Model;
 
 
+
 if (class_exists('Eset_Xmlparser')) {
     return;
 }

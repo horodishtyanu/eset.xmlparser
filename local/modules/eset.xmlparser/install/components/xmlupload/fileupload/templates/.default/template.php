@@ -16,3 +16,14 @@
     </div>
 </div>
 
+
+<script>
+    BX.message({
+        AJAX_TEMPLATE_PATH: '<? echo $this->__component->__path; ?>'+'/ajax.php'
+    });
+</script>
+
+<script>
+
+
+</script>
