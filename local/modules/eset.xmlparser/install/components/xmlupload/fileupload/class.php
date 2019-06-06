@@ -20,22 +20,6 @@ class xmluploadComponents extends CBitrixComponent implements Controllerable {
     }
 
     protected function getResult(){
-//        $vendor = VendorTable::getList(['select' => ['*', 'PROGRAMS'], 'filter' => ['ID' => '1']])->fetchObject();
-//        $i = 0;
-//
-//        $arRes['VNAME'] = $vendor->getName();
-//        $arRes['ID'] = $vendor->getID();
-//        foreach ($vendor->getPrograms() as $prog) {
-//            $l = 0;
-//            $arRes['PROGS'][$i]['PROG_ID'] = $prog->getID();
-//            $arRes['PROGS'][$i]['PROG_NAME'] = $prog->getName();
-//            foreach ($prog['VERSIONS'] as $ver) {
-//                $arRes['PROGS'][$i]['VERSIONS'][$l] = $ver->getName();
-//                $l++;
-//            }
-//            $i++;
-//        }
-
         $arResult['test'] = 'asdasd';
         $this->arResult = $arResult;
     }
