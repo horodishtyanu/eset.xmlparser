@@ -58,13 +58,13 @@ class Eset_Xmlparser extends CModule
     public function doInstall()
     {
         ModuleManager::registerModule($this->MODULE_ID);
-//        $this->installDB();
+        $this->installDB();
         $this->installFiles();
     }
 
     public function doUninstall()
     {
-//        $this->uninstallDB();
+        $this->uninstallDB();
         ModuleManager::unregisterModule($this->MODULE_ID);
     }
 
