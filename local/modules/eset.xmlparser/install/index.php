@@ -58,13 +58,13 @@ class Eset_Xmlparser extends CModule
     public function doInstall()
     {
         ModuleManager::registerModule($this->MODULE_ID);
-        $this->installDB();
+//        $this->installDB();
         $this->installFiles();
     }
 
     public function doUninstall()
     {
-        $this->uninstallDB();
+//        $this->uninstallDB();
         ModuleManager::unregisterModule($this->MODULE_ID);
     }
 
@@ -74,6 +74,12 @@ class Eset_Xmlparser extends CModule
             Model\VendorTable::getEntity()->createDbTable();
             Model\ProgramTable::getEntity()->createDbTable();
             Model\VersionTable::getEntity()->createDbTable();
+            Model\CounterTable::getEntity()->createDbTable();
+        }
+        try {
+            Model\CounterTable::add(['ID' => 1, 'AMOUNT' => 0]);
+        }catch (\Exception $exception){
+            throw new Exception($exception->getMessage());
         }
     }
 
@@ -84,6 +90,7 @@ class Eset_Xmlparser extends CModule
             $connection->dropTable(Model\VendorTable::getTableName());
             $connection->dropTable(Model\ProgramTable::getTableName());
             $connection->dropTable(Model\VersionTable::getTableName());
+            $connection->dropTable(Model\CounterTable::getTableName());
         }
     }
 

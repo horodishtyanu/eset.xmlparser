@@ -4,7 +4,7 @@ $(document).on('click','#upload', function(event) {
     let file_data = $('#xmlfile').prop('files')[0];
     let form_data = new FormData();
     form_data.append('file', file_data);
-
+    $(this).attr('disabled', true);
     let url = BX.message('AJAX_TEMPLATE_PATH');
     $.ajax({
         url: url,
@@ -15,7 +15,7 @@ $(document).on('click','#upload', function(event) {
         dataType: "text",
         success: function(resp){
             console.log(resp);
-            $(this).attr('disabled', false);
+            $('#upload').attr('disabled', false);
         }
     })
 });

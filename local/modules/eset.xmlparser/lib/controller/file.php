@@ -2,6 +2,7 @@
 namespace Eset\Xmlparser\Controller;
 
 use Bitrix\Main\DB\Exception;
+use Eset\Xmlparser\Model\CounterTable;
 use Eset\Xmlparser\Model\ProgramTable;
 use Eset\Xmlparser\Model\VendorTable;
 use Eset\Xmlparser\Model\VersionTable;
@@ -23,9 +24,12 @@ class File
 
             self::setRelations($result);
 
+
+
             $arResult[] = $result;
 
         }
+        self::updateCounter();
         return $arResult;
     }
 
@@ -85,5 +89,12 @@ class File
         }catch (\Exception $exception){
             throw new Exception($exception->getMessage());
         }
+    }
+    public static function updateCounter(){
+        $dbCounter = CounterTable::getByPrimary(1)->fetchObject();
+        $amount = $dbCounter->getAmount();
+        $amount++;
+        $dbCounter->setAmount($amount);
+        $dbCounter->save();
     }
 }
